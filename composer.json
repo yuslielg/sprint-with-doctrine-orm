@@ -1,0 +1,23 @@
+{
+    "name": "contrask/sprint-with-doctrine-orm",
+    "description": "Provides an implementation of contrask/sprint-as-abstract using doctrine/orm for persistence",
+    "type": "library",
+    "keywords": ["sprint"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Yosmany Garcia",
+            "email": "yosmanyga@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "contrask/sprint-as-abstract": "dev-master",
+        "contrask/project-with-doctrine-orm": "dev-master",
+        "doctrine/orm": "2.4.*",
+        "gedmo/doctrine-extensions": "2.3.*"
+    },
+    "autoload": {
+        "psr-0": { "Contrask\\Component\\Sprint": "src/" }
+    }
+}
