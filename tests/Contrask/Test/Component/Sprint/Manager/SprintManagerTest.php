@@ -23,9 +23,11 @@ class SprintManagerTest extends \PHPUnit_Framework_TestCase
         $this->em = $builder->createEntityManager(
             array(
                 realpath(sprintf("%s/../../../../../../src/Contrask/Component/Sprint/Resources/config/doctrine", __DIR__)),
+                realpath(sprintf("%s/../../../../../../src/Contrask/Component/Project/Resources/config/doctrine", __DIR__))
             ),
             array(
                 'Contrask\Component\Sprint\Model\Sprint',
+                'Contrask\Component\Project\Model\Project',
             )
         );
     }
