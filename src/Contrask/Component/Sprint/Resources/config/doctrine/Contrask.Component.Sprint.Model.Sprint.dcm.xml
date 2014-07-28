@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Contrask\Component\Sprint\Model\Sprint" table="sprints">
+        <id name="strid" />
+        <id name="project" column="project_strid" association-key="true" />
+
+        <field name="name" type="string"></field>
+        <field name="start" type="datetime"></field>
+        <field name="end" type="datetime"></field>
+
+        <many-to-one field="project" target-entity="Contrask\Component\Project\Model\Project">
+            <join-column referenced-column-name="strid" />
+        </many-to-one>
+    </entity>
+
+</doctrine-mapping>
