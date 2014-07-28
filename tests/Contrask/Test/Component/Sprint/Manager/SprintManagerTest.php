@@ -2,6 +2,7 @@
 
 namespace Contrask\Test\Component\Sprint\Manager;
 
+use Contrask\Component\Project\Model\Project;
 use Contrask\Component\Sprint\Model\Sprint;
 use Contrask\Component\Sprint\Manager\SprintManager;
 use Contrask\Test\Component\Sprint\EntityManagerBuilder;
@@ -49,8 +50,12 @@ class SprintManagerTest extends \PHPUnit_Framework_TestCase
     public function testPickWithStringCriteria()
     {
         /*Fixtures*/
+        $project = new Project();
+        $project->setStrid('foo');
+
         $sprint = new Sprint();
         $sprint->setStrid('foo');
+        $sprint->setProject($project);
         $sprint->setName('bar');
         $this->em->persist($sprint);
 
@@ -67,8 +72,12 @@ class SprintManagerTest extends \PHPUnit_Framework_TestCase
     public function testPickWithArrayCriteria()
     {
         /*Fixtures*/
+        $project = new Project();
+        $project->setStrid('foo');
+
         $sprint = new Sprint();
         $sprint->setStrid('foo');
+        $sprint->setProject($project);
         $sprint->setName('bar');
         $this->em->persist($sprint);
 
@@ -85,13 +94,18 @@ class SprintManagerTest extends \PHPUnit_Framework_TestCase
     public function testCollectWithNullCriteria()
     {
         /*Fixtures*/
+        $project = new Project();
+        $project->setStrid('foo');
+
         $sprint = new Sprint();
         $sprint->setStrid('foo');
+        $sprint->setProject($project);
         $sprint->setName('bar');
         $this->em->persist($sprint);
 
         $sprint = new Sprint();
         $sprint->setStrid('foo 1');
+        $sprint->setProject($project);
         $sprint->setName('bar 1');
         $this->em->persist($sprint);
 
@@ -108,13 +122,18 @@ class SprintManagerTest extends \PHPUnit_Framework_TestCase
     public function testCollectWithArrayCriteria()
     {
         /*Fixtures*/
+        $project = new Project();
+        $project->setStrid('foo');
+
         $sprint = new Sprint();
         $sprint->setStrid('foo');
+        $sprint->setProject($project);
         $sprint->setName('bar');
         $this->em->persist($sprint);
 
         $sprint = new Sprint();
         $sprint->setStrid('foo 1');
+        $sprint->setProject($project);
         $sprint->setName('bar 1');
         $this->em->persist($sprint);
 
@@ -132,8 +151,12 @@ class SprintManagerTest extends \PHPUnit_Framework_TestCase
     public function testAdd()
     {
         /*Fixtures*/
+        $project = new Project();
+        $project->setStrid('foo');
+
         $sprint = new Sprint();
         $sprint->setStrid('foo');
+        $sprint->setProject($project);
         $sprint->setName('bar');
 
         /*Tests*/
@@ -148,8 +171,12 @@ class SprintManagerTest extends \PHPUnit_Framework_TestCase
     public function testUpdate()
     {
         /*Fixtures*/
+        $project = new Project();
+        $project->setStrid('foo');
+
         $sprint = new Sprint();
         $sprint->setStrid('foo');
+        $sprint->setProject($project);
         $sprint->setName('bar');
         $this->em->persist($sprint);
         $this->em->flush();
@@ -168,13 +195,18 @@ class SprintManagerTest extends \PHPUnit_Framework_TestCase
     public function testRemove()
     {
         /*Fixtures*/
+        $project = new Project();
+        $project->setStrid('foo');
+
         $sprint1 = new Sprint();
         $sprint1->setStrid('foo');
+        $sprint1->setProject($project);
         $sprint1->setName('bar');
         $this->em->persist($sprint1);
 
         $sprint2 = new Sprint();
         $sprint2->setStrid('foo 1');
+        $sprint2->setProject($project);
         $sprint2->setName('bar 1');
         $this->em->persist($sprint2);
 
