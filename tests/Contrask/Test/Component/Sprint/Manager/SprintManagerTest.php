@@ -17,7 +17,6 @@ class SprintManagerTest extends \PHPUnit_Framework_TestCase
      * @var EntityManager
      */
     protected $em;
-    
     public function setUp()
     {
         $builder = new EntityManagerBuilder();
@@ -34,7 +33,7 @@ class SprintManagerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Contrask\Component\Project\Manager\ProjectManager::__construct
+     * @covers \Contrask\Component\Sprint\Manager\SprintManager::__construct
      */
     public function testConstructor()
     {
@@ -52,11 +51,15 @@ class SprintManagerTest extends \PHPUnit_Framework_TestCase
         /*Fixtures*/
         $project = new Project();
         $project->setStrid('foo');
+        $project->setName('bar');
+        $this->em->persist($project);
 
         $sprint = new Sprint();
         $sprint->setStrid('foo');
         $sprint->setProject($project);
         $sprint->setName('bar');
+        $sprint->setStart(new \DateTime());
+        $sprint->setEnd(new \DateTime());
         $this->em->persist($sprint);
 
         $this->em->flush();
@@ -74,17 +77,21 @@ class SprintManagerTest extends \PHPUnit_Framework_TestCase
         /*Fixtures*/
         $project = new Project();
         $project->setStrid('foo');
+        $project->setName('bar');
+        $this->em->persist($project);
 
         $sprint = new Sprint();
         $sprint->setStrid('foo');
         $sprint->setProject($project);
         $sprint->setName('bar');
+        $sprint->setStart(new \DateTime());
+        $sprint->setEnd(new \DateTime());
         $this->em->persist($sprint);
 
         $this->em->flush();
 
         /*Tests*/
-        $sprintManager = new ProjectManager($this->em);
+        $sprintManager = new SprintManager($this->em);
         $this->assertEquals($sprint, $sprintManager->pick(array('name' => 'bar')));
     }
 
@@ -96,23 +103,29 @@ class SprintManagerTest extends \PHPUnit_Framework_TestCase
         /*Fixtures*/
         $project = new Project();
         $project->setStrid('foo');
+        $project->setName('bar');
+        $this->em->persist($project);
 
         $sprint = new Sprint();
         $sprint->setStrid('foo');
         $sprint->setProject($project);
         $sprint->setName('bar');
+        $sprint->setStart(new \DateTime());
+        $sprint->setEnd(new \DateTime());
         $this->em->persist($sprint);
 
         $sprint = new Sprint();
         $sprint->setStrid('foo 1');
         $sprint->setProject($project);
         $sprint->setName('bar 1');
+        $sprint->setStart(new \DateTime());
+        $sprint->setEnd(new \DateTime());
         $this->em->persist($sprint);
 
         $this->em->flush();
 
         /*Tests*/
-        $sprintManager = new ProjectManager($this->em);
+        $sprintManager = new SprintManager($this->em);
         $this->assertEquals(2, count($sprintManager->collect()));
     }
 
@@ -124,23 +137,29 @@ class SprintManagerTest extends \PHPUnit_Framework_TestCase
         /*Fixtures*/
         $project = new Project();
         $project->setStrid('foo');
+        $project->setName('bar');
+        $this->em->persist($project);
 
         $sprint = new Sprint();
         $sprint->setStrid('foo');
         $sprint->setProject($project);
         $sprint->setName('bar');
+        $sprint->setStart(new \DateTime());
+        $sprint->setEnd(new \DateTime());
         $this->em->persist($sprint);
 
         $sprint = new Sprint();
         $sprint->setStrid('foo 1');
         $sprint->setProject($project);
         $sprint->setName('bar 1');
+        $sprint->setStart(new \DateTime());
+        $sprint->setEnd(new \DateTime());
         $this->em->persist($sprint);
 
         $this->em->flush();
 
         /*Tests*/
-        $sprintManager = new ProjectManager($this->em);
+        $sprintManager = new SprintManager($this->em);
         $this->assertEquals(1, count($sprintManager->collect(array('strid' => 'foo'))));
         $this->assertEquals(0, count($sprintManager->collect(array('name' => 'foo'))));
     }
@@ -153,11 +172,15 @@ class SprintManagerTest extends \PHPUnit_Framework_TestCase
         /*Fixtures*/
         $project = new Project();
         $project->setStrid('foo');
+        $project->setName('bar');
+        $this->em->persist($project);
 
         $sprint = new Sprint();
         $sprint->setStrid('foo');
         $sprint->setProject($project);
         $sprint->setName('bar');
+        $sprint->setStart(new \DateTime());
+        $sprint->setEnd(new \DateTime());
 
         /*Tests*/
         $sprintManager = new SprintManager($this->em);
@@ -173,11 +196,15 @@ class SprintManagerTest extends \PHPUnit_Framework_TestCase
         /*Fixtures*/
         $project = new Project();
         $project->setStrid('foo');
+        $project->setName('bar');
+        $this->em->persist($project);
 
         $sprint = new Sprint();
         $sprint->setStrid('foo');
         $sprint->setProject($project);
         $sprint->setName('bar');
+        $sprint->setStart(new \DateTime());
+        $sprint->setEnd(new \DateTime());
         $this->em->persist($sprint);
         $this->em->flush();
 
@@ -197,17 +224,23 @@ class SprintManagerTest extends \PHPUnit_Framework_TestCase
         /*Fixtures*/
         $project = new Project();
         $project->setStrid('foo');
+        $project->setName('bar');
+        $this->em->persist($project);
 
         $sprint1 = new Sprint();
         $sprint1->setStrid('foo');
         $sprint1->setProject($project);
         $sprint1->setName('bar');
+        $sprint1->setStart(new \DateTime());
+        $sprint1->setEnd(new \DateTime());
         $this->em->persist($sprint1);
 
         $sprint2 = new Sprint();
         $sprint2->setStrid('foo 1');
         $sprint2->setProject($project);
         $sprint2->setName('bar 1');
+        $sprint2->setStart(new \DateTime());
+        $sprint2->setEnd(new \DateTime());
         $this->em->persist($sprint2);
 
         /*Tests*/
